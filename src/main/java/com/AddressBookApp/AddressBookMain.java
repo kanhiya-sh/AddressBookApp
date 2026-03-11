@@ -43,9 +43,14 @@ public class AddressBookMain {
 
         addressBook.displayContacts();
         
-        System.out.print("\nEnter the First Name of Contact to Edit: ");
+        System.out.print("\nEnter the First Name of Contact to Edit : ");
         String nameToEdit = scMyScan.nextLine();
         addressBook.editContact(nameToEdit);
+        addressBook.displayContacts();
+        
+        System.out.print("\nEnter the First Name of Contact to Delete : ");
+        String nameToDelete = scMyScan.nextLine();
+        addressBook.deleteContact(nameToDelete);
         addressBook.displayContacts();
     }
 }

@@ -27,35 +27,54 @@ public class AddressBook {
         }
     }
     
-//  ----- Edit Contact in Address Book -----
+//  ----- Edit Contact in Address Book ------
 	
     public void editContact(String name) {
         for(Contact c : contactList) {
             if(c.getFirstName().equalsIgnoreCase(name)) {
                 Scanner myScan = new Scanner(System.in);
                 
-                System.out.print("Enter New Address: ");
+                System.out.print("Enter New Address : ");
                 c.setAddress(myScan.nextLine());
 
-                System.out.print("Enter New City: ");
+                System.out.print("Enter New City : ");
                 c.setCity(myScan.nextLine());
 
-                System.out.print("Enter New State: ");
+                System.out.print("Enter New State : ");
                 c.setState(myScan.nextLine());
 
-                System.out.print("Enter New Zip: ");
+                System.out.print("Enter New Zip : ");
                 c.setZip(myScan.nextLine());
 
-                System.out.print("Enter New Phone: ");
+                System.out.print("Enter New Phone : ");
                 c.setPhoneNumber(myScan.nextLine());
 
-                System.out.print("Enter New Email: ");
+                System.out.print("Enter New Email : ");
                 c.setEmail(myScan.nextLine());
 
-                System.out.println("Contact Updated Successfully!");
+                System.out.println("\nContact Updated Successfully!");
                 return;
             }
         }
-        System.out.println("Contact not found.");
+        System.out.println("\nContact not found.");
+    }
+    
+//   ----- Delete Contact from Address Book ------
+	
+    public void deleteContact(String name) {
+        Contact contactToDelete = null;
+        for(Contact c : contactList) {
+            if(c.getFirstName().equalsIgnoreCase(name)) {
+                contactToDelete = c;
+                break;
+            }
+        }
+        if(contactToDelete != null) {
+            contactList.remove(contactToDelete);
+            System.out.println("\nContact deleted Successfully!");
+        } 
+        else {
+            System.out.println("Contact not found.");
+        }
     }
 }
