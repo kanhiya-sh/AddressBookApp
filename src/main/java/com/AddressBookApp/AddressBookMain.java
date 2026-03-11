@@ -42,5 +42,10 @@ public class AddressBookMain {
         System.out.println("\nContact Added Successfully!\n");
 
         addressBook.displayContacts();
+        
+        System.out.print("\nEnter the First Name of Contact to Edit: ");
+        String nameToEdit = scMyScan.nextLine();
+        addressBook.editContact(nameToEdit);
+        addressBook.displayContacts();
     }
 }

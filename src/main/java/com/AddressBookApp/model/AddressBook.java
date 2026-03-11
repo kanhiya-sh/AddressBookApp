@@ -5,9 +5,14 @@ import java.util.*;
 public class AddressBook {
 
     private List<Contact> contactList = new ArrayList<>();
+    
+//  ----- Add Contact to Address Book -----
+    
     public void addContact(Contact contact) {
         contactList.add(contact);
     }
+    
+//  ----- Display All Contacts in Address Book -----
 
     public void displayContacts() {
         for(Contact c : contactList) {
@@ -20,5 +25,37 @@ public class AddressBook {
             System.out.println("Email : " + c.getEmail());
             System.out.println("--------------------------");
         }
+    }
+    
+//  ----- Edit Contact in Address Book -----
+	
+    public void editContact(String name) {
+        for(Contact c : contactList) {
+            if(c.getFirstName().equalsIgnoreCase(name)) {
+                Scanner myScan = new Scanner(System.in);
+                
+                System.out.print("Enter New Address: ");
+                c.setAddress(myScan.nextLine());
+
+                System.out.print("Enter New City: ");
+                c.setCity(myScan.nextLine());
+
+                System.out.print("Enter New State: ");
+                c.setState(myScan.nextLine());
+
+                System.out.print("Enter New Zip: ");
+                c.setZip(myScan.nextLine());
+
+                System.out.print("Enter New Phone: ");
+                c.setPhoneNumber(myScan.nextLine());
+
+                System.out.print("Enter New Email: ");
+                c.setEmail(myScan.nextLine());
+
+                System.out.println("Contact Updated Successfully!");
+                return;
+            }
+        }
+        System.out.println("Contact not found.");
     }
 }
