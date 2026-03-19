@@ -10,10 +10,11 @@ public class Contact {
     private String zip;
     private String phoneNumber;
     private String email;
+    private Long id;
 
     public Contact() {}
     
-    public Contact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email) {
+    public Contact(String firstName, String lastName, String address, String city, String state, String zip, String phoneNumber, String email, Long id) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -22,6 +23,7 @@ public class Contact {
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+		this.id = id;
 	}
     
     	public String getFirstName() {
@@ -87,6 +89,14 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
 	public void display() {
 		System.out.println("Name: " + firstName + " " + lastName);
 		System.out.println("Address: " + address);

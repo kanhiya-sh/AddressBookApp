@@ -1,65 +1,59 @@
 package com.AddressBookApp.service;
 
-import com.AddressBookApp.model.AddressBook;
-import com.AddressBookApp.model.Contact;
+import java.util.*;
+
 import org.springframework.stereotype.Service;
+
+import com.AddressBookApp.model.Contact;
 
 @Service
 public class AddressBookService {
 
-    AddressBook addressBook = new AddressBook();
+    private List<Contact> contactList = new ArrayList<>();
+    private Long counter = (long) 1;
 
-    // UC2 – Add Contact
-    public void addContact(Contact person) {
-        addressBook.addContact(person);
-        System.out.println("Contact Added Successfully");
+    // CREATE
+    public Contact addContact(Contact contact) {
+        contact.setId(counter++);
+        contactList.add(contact);
+        return contact;
     }
 
-    // UC3 – Edit Contact
-    public void editContact(String name, String newCity) {
+    // READ
+    public List<Contact> getAllContacts() {
+        return contactList;
+    }
 
-        for (Contact person : addressBook.getContacts()) {
-            if (person.getFirstName().equalsIgnoreCase(name)) {
-                person.setCity(newCity);
-                System.out.println("Contact Updated");
-                return;
+    // UPDATE
+    public Contact updateContact(Long id, Contact newContact) {
+
+        for (Contact c : contactList) {
+            if (c.getId().equals(id)) {
+
+                c.setFirstName(newContact.getFirstName());
+                c.setLastName(newContact.getLastName());
+                c.setAddress(newContact.getAddress());
+                c.setCity(newContact.getCity());
+                c.setState(newContact.getState());
+                c.setZip(newContact.getZip());
+                c.setPhoneNumber(newContact.getPhoneNumber());
+                c.setEmail(newContact.getEmail());
+
+                return c;
             }
         }
-
-        System.out.println("Contact Not Found");
+        return null;
     }
 
-    // UC4 – Delete Contact
-    public void deleteContact(String name) {
+    // DELETE
+    public String deleteContact(Long id) {
 
-        Contact toRemove = null;
-
-        for (Contact person : addressBook.getContacts()) {
-            if (person.getFirstName().equalsIgnoreCase(name)) {
-                toRemove = person;
-                break;
+        for (Contact c : contactList) {
+            if (c.getId().equals(id)) {
+                contactList.remove(c);
+                return "Contact deleted successfully";
             }
         }
-
-        if (toRemove != null) {
-            addressBook.getContacts().remove(toRemove);
-            System.out.println("Contact Deleted");
-        } else {
-            System.out.println("Contact Not Found");
-        }
-    }
-
-    // UC5 – Display Multiple Contacts
-    public void displayContacts() {
-
-        if (addressBook.getContacts().isEmpty()) {
-            System.out.println("No Contacts Found");
-            return;
-        }
-
-        for (Contact person : addressBook.getContacts()) {
-            person.display();
-            System.out.println("----------------------");
-        }
+        return "Contact not found";
     }
 }
