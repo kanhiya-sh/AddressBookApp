@@ -87,4 +87,13 @@ public class Contact {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public void display() {
+		System.out.println("Name: " + firstName + " " + lastName);
+		System.out.println("Address: " + address);
+		System.out.println("City: " + city);
+		System.out.println("State: " + state);
+		System.out.println("Zip: " + zip);
+		System.out.println("Phone: " + phoneNumber);
+		System.out.println("Email: " + email);
+	}
 }
